@@ -16,7 +16,7 @@ jobs:
         run: echo 'Hello, world!'
       - name: show logs
         run: echo "$(git log --oneline | tail)"
-      - name: leadtime in seconds
+      - name: time of first commit since tag
         run: |
           ltag="$(git rev-parse --short $(git describe --abbrev=0))"
           echo "last tag: ${ltag}"
