@@ -18,7 +18,6 @@ jobs:
         run: |
           ltag="$(git describe --abbrev=0)"
           echo "last tag: ${ltag}"
-          echo "first commit since tag: $(git log --oneline ${ltag}..${GITHUB_REF} | awk '{print $1}' | tail -1)"
           t1="$(git log --oneline ${ltag}..${GITHUB_REF} | awk '{print $1}' | tail -1) xargs git show -s --format=%ci | tail)"
           echo "lead time in sec: $((date - ${t1}))"
 
