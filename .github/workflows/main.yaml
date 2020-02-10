@@ -20,8 +20,8 @@ jobs:
           echo "${ltag}"
       - name: timestamp of commit since last tag
         run: |
-          echo "$(git log --oneline $ltag..${GITHUB_REF} | awk '{print $1}' | tail -1)"
-          t1="$(git log --oneline $ltag..dora-leadtime | awk '{print $1}' | tail -1 | xargs git show -s --format=%ci | tail)"
+          echo "$(git log --oneline ${ltag}..${GITHUB_REF} | awk '{print $1}' | tail -1)"
+          t1="$(git log --oneline ${ltag}..${GITHUB_REF} | awk '{print $1}' | tail -1) xargs git show -s --format=%ci | tail)"
       - name: leadtime in seconds
-        run: echo "$((date - $t1))"
+        run: echo "$((date - ${t1}))"
 
