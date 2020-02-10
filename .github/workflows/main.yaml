@@ -17,7 +17,7 @@ jobs:
       - name: last latest tag
         run: |
           ltag="$(git describe --abbrev=0)"
-          echo '$ltag'
+          echo "${ltag}"
       - name: timestamp of commit since last tag
         run: |
           echo "$(git log --oneline $ltag..${GITHUB_REF} | awk '{print $1}' | tail -1)"
