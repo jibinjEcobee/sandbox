@@ -21,6 +21,7 @@ jobs:
           ltag="$(git rev-parse --short $(git describe --abbrev=0))"
           echo "last tag: ${ltag}"
           lcommit="$(git rev-parse --short HEAD~1)"
-          t1="$(git log --oneline ${ltag}..${lcommit} | awk '{print $1}' | tail -1) xargs git show -s --format=%ci | tail)"
+          t1="$(git log --oneline ${ltag}..${lcommit} | awk '{print $1}' | tail -1 | xargs git show -s --format=%ci | tail)"
           echo "t1=${t1}"
+          echo "lead time in sec: $((date - ${t1}))"
 
