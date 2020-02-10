@@ -18,8 +18,9 @@ jobs:
         run: echo "$(git log --oneline | tail)"
       - name: leadtime in seconds
         run: |
-          ltag="$(git describe --abbrev=0)"
+          ltag="${git rev-parse --short $(git describe --abbrev=0))"
           echo "last tag: ${ltag}"
-          t1="$(git log --oneline ${ltag}..master | awk '{print $1}' | tail -1) xargs git show -s --format=%ci | tail)"
+          lcommit="$(git rev-parse --short HEAD~1)"
+          t1="$(git log --oneline ${ltag}..${lcommit} | awk '{print $1}' | tail -1) xargs git show -s --format=%ci | tail)"
           echo "lead time in sec: $((date - ${t1}))"
 
