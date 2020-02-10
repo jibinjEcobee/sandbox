@@ -14,14 +14,11 @@ jobs:
       - uses: actions/checkout@v1
       - name: Run a one-line script
         run: echo 'Hello, world!'
-      - name: last latest tag
+      - name: leadtime in seconds
         run: |
           ltag="$(git describe --abbrev=0)"
-          echo "${ltag}"
-      - name: timestamp of commit since last tag
-        run: |
-          echo "$(git log --oneline ${ltag}..${GITHUB_REF} | awk '{print $1}' | tail -1)"
+          echo "last tag: ${ltag}"
+          echo "first commit since tag: $(git log --oneline ${ltag}..${GITHUB_REF} | awk '{print $1}' | tail -1)"
           t1="$(git log --oneline ${ltag}..${GITHUB_REF} | awk '{print $1}' | tail -1) xargs git show -s --format=%ci | tail)"
-      - name: leadtime in seconds
-        run: echo "$((date - ${t1}))"
+          echo "lead time in sec: $((date - ${t1}))"
 
