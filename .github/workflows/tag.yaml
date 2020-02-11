@@ -15,4 +15,4 @@ jobs:
           wget https://github.com/tcnksm/ghr/releases/download/v0.13.0/ghr_v0.13.0_linux_386.tar.gz -O - | tar xvz;
           sudo ln ghr_v0.13.0_linux_386/ghr /usr/local/bin
       - name: run ghr
-        run: ghr
+        run: ghr -t ${{ secrets.TOKEN }} anewtag1 
