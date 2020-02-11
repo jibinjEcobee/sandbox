@@ -23,8 +23,4 @@ jobs:
           lcommit="$(git rev-parse --short HEAD~1)"
           t1="$(git log --oneline ${ltag}..${lcommit} | awk '{print $1}' | tail -1 | xargs git show -s --format=%ci | tail)"
           echo "t1=${t1}"
-      - name: tag a pr
-        run: |
-          git tag -a tag1 -m "a message"
-          git push --tags
 
