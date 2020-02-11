@@ -13,6 +13,6 @@ jobs:
       - name: install ghr
         run: |
           wget https://github.com/tcnksm/ghr/releases/download/v0.13.0/ghr_v0.13.0_linux_386.tar.gz -O - | tar xvz;
-          ln ghr_v0.13.0_linux_386/ghr /bin/
+          ln ghr_v0.13.0_linux_386/ghr /usr/local/bin
       - name: run ghr
         run: ghr
