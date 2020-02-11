@@ -25,6 +25,6 @@ jobs:
           echo "t1=${t1}"
       - name: tag a pr
         run: |
-          git tag -am "tag1"
+          git tag -a tag1 -m "a message"
           git push --tags
 
