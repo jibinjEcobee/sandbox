@@ -1,19 +1,10 @@
 # !/bin/bash
 
-function get_delta_seconds(){
-  start_time=$1
-  now=$(date +%s)
-  delta=$(($now - $start_time))
-  return $delta
-}
+latestTag="$(git describe --tags --abbrev=0)"
 
-function get_avg(){
-lst=$1
-for i in "${lst[@]}"
+for commit in $(git rev-list --first-parent $latestTag..HEAD)
 do
-  echo $i
+commitDate=$(git --no-pager show -s --format=%ct $commit)
+currentDate=$(date +%s)
+echo "$commit $((($currentDate - $commitDate)/60))"
 done
-}
-
-get_avg (1, 1, 2, 3, 4, 4)
-get_delta_seconds 0
