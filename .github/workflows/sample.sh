@@ -25,5 +25,5 @@ count=$(($count + 1))
 echo $commit $delta mins ";" $avg
 done
 
-echo "avg lead time for $latestTag =" $(floatCalculator $avg/$count) "mins"
-echo "avg lead time for $latestTag =" $(floatCalculator $avg/$count) "mins" > output.txt
+echo "avg lead time for $1 =" $(floatCalculator $avg/$count) "mins"
+echo "avg lead time for $1 =" $(floatCalculator $avg/$count) "mins" > output.txt
