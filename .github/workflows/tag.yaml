@@ -20,8 +20,8 @@ jobs:
         run: |
           newRevision=$(( $(echo $latestTag | tr -dc 0-9) +1 ))
           ghr -t ${{ secrets.TOKEN }} ${newRevision}
-       - uses: actions/upload-artifact@v1
-         with:
+      - uses: actions/upload-artifact@v1
+        with:
           name: leadtime 
           path: .github/workflows/output.txt 
 
