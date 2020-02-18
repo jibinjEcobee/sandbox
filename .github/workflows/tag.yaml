@@ -17,11 +17,11 @@ jobs:
       - name: calcualte new release tag
         run: | 
           latestTag=$"$(git describe --tags --abbrev=0)"
-          echo "::set-env name=newRelease::$(( $(echo ${{latestTag}} | tr -dc 0-9) + 1 ))"
+          echo "::set-env name=newRelease::$(( $(echo ${latestTag} | tr -dc 0-9) + 1 ))"
       - name: calculate leadtime
-        run: bash .github/workflows/sample.sh ${newRelease}
+        run: bash .github/workflows/sample.sh ${{newRelease}}
       - name: run ghr
-        run: ghr -t ${{ secrets.TOKEN }} v${newRelease}
+        run: ghr -t ${{ secrets.TOKEN }} v${{newRelease}}
       - uses: actions/upload-artifact@v1
         with:
           name: leadtime 
