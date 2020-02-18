@@ -18,7 +18,8 @@ jobs:
         run: bash .github/workflows/sample.sh
       - name: run ghr
         run: |
-          newRevision=$(( $(echo $latestTag | tr -dc 0-9) +1 ))
+          latestTag=$"$(git describe --tags --abbrev=0)"
+          newRevision=$(( $(echo $latestTag | tr -dc 0-9) + 1 ))
           ghr -t ${{ secrets.TOKEN }} v${newRevision}
       - uses: actions/upload-artifact@v1
         with:
