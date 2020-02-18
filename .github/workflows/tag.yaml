@@ -14,5 +14,14 @@ jobs:
         run: |
           wget https://github.com/tcnksm/ghr/releases/download/v0.13.0/ghr_v0.13.0_linux_386.tar.gz -O - | tar xvz;
           sudo ln ghr_v0.13.0_linux_386/ghr /usr/local/bin
+      - name: calculate leadtime
+        run: bash .github/workflows/sample.sh
       - name: run ghr
-        run: ghr -t ${{ secrets.TOKEN }} anewtag2
+        run: |
+          newRevision=$(( $(echo $latestTag | tr -dc 0-9) +1 ))
+          ghr -t ${{ secrets.TOKEN }} $newRevision   
+       - uses: actions/upload-artifact@v1
+         with:
+          name: leadtime 
+          path: .github/workflows/output.txt 
+

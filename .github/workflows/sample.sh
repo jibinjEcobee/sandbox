@@ -4,6 +4,12 @@ function floatCalculator(){
   echo $(bc -l <<< "scale=2; $@")
 }
 
+function increment_revision(){
+  oldRevision=$1
+  newRevision=$(($oldRevision + 1 ))
+  echo $newRevision
+}
+
 latestTag="$(git describe --tags --abbrev=0)"
 allCommitsSinceTag=$(git rev-list --first-parent $latestTag..HEAD)
 currentDate=$(date +%s)
@@ -19,4 +25,4 @@ count=$(($count + 1))
 echo $commit $delta mins ";" $avg
 done
 
-echo "avg lead time for $latestTag =" $(floatCalculator $avg/$count) "mins"
+echo "avg lead time for $latestTag =" $(floatCalculator $avg/$count) "mins" > output.txt
