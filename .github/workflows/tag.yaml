@@ -16,7 +16,7 @@ jobs:
           sudo ln ghr_v0.13.0_linux_386/ghr /usr/local/bin
       - name: calcualte new release tag
         run: | 
-          latestTag=$"$(git describe --tags --abbrev=0)"
+          latestTag="$(git describe --tags --abbrev=0)"
           echo "::set-env name=newRelease::v$(( $(echo ${latestTag} | tr -dc 0-9) + 1 ))"
       - name: calculate leadtime
         run: bash .github/workflows/sample.sh ${newRelease}
