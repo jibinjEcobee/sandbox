@@ -1,6 +1,8 @@
 name: "create a new release tag"
 on:
-  push
+  push:
+    branches:
+      - master
 
 jobs:
   build:
@@ -21,7 +23,7 @@ jobs:
       - name: calculate leadtime
         run: bash .github/workflows/sample.sh ${newRelease}
       - name: run ghr
-        run: ghr -t ${{ secrets.TOKEN }} -c  $(git rev-parse --short HEAD) ${newRelease}
+        run: ghr -t ${{ secrets.TOKEN }} ${newRelease}
       - uses: actions/upload-artifact@v1
         with:
           name: leadtime 
